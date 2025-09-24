@@ -169,5 +169,16 @@ enum IOPort
     PE25,
     PE26,
     PE27,
+    
+    // UART pin definitions for S32K3xx
+    UART0_TX = 200,
+    UART0_RX,
+    UART1_TX,
+    UART1_RX,
+    UART2_TX,
+    UART2_RX,
+    UART3_TX,
+    UART3_RX,
+    
     NUM_PORTS = 0xff //, PORT_UNAVAILABLE = NUM_PORTS
 };

@@ -1,0 +1,115 @@
+// Copyright 2024 Accenture.
+
+#pragma once
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+// S32K3xx Clock Configuration
+// Target: S32K312/S32K344 with Cortex-M7
+// External crystal: 8MHz (adjust as needed)
+// Target system clock: 80MHz
+
+#define CRYSTAL_SPEED     8000000U
+#define CRYSTAL_SPEED_KHZ ((CRYSTAL_SPEED) / (1000))
+
+#define CPU_SPEED 80000000U
+
+#define CPU_SPEED_MHZ ((CPU_SPEED) / (1000000))
+#define BUS_SPEED     ((CPU_SPEED) / (2))
+#define BUS_SPEED_MHZ ((BUS_SPEED) / (1000000))
+
+#define CPU_XTAL_CLK_HZ      CRYSTAL_SPEED
+#define CPU_INT_FAST_CLK_HZ  48000000U
+#define DEFAULT_SYSTEM_CLOCK 80000000U
+
+#define CORE_CLK CPU_SPEED
+#define SYS_CLK  CPU_SPEED
+#define BUS_CLK  (CPU_SPEED / 2)
+
+#define CLOCKSET_PCC(sel, frac, pcd) (((sel) << 24) | ((frac) << 3) | (pcd))
+
+#if (SYS_CLK == 80000000U)
+
+#define _SCG_RCCR_SCS     (6 << 24)  // SPLL
+#define _SCG_RCCR_DIVCORE (1 << 16)  // Core clock = SPLL/2 = 80MHz
+#define _SCG_RCCR_DIVBUS  (1 << 4)   // Bus clock = SPLL/4 = 40MHz
+#define _SCG_RCCR_DIVSLOW (2)        // Slow clock = SPLL/8 = 10MHz
+
+#define _SPLLDIV1 (1)  // SPLLDIV1 = 1
+#define _SPLLDIV2 (1)  // SPLLDIV2 = 1
+#define _FIRCDIV1 (1)  // FIRCDIV1 = 1
+#define _FIRCDIV2 (1)  // FIRCDIV2 = 1
+#define _SIRCDIV1 (1)  // SIRCDIV1 = 1
+#define _SIRCDIV2 (1)  // SIRCDIV2 = 1
+#define _SOSCDIV1 (1)  // SOSCDIV1 = 1
+#define _SOSCDIV2 (1)  // SOSCDIV2 = 1
+
+// PLL Configuration for 160MHz SPLL from 8MHz crystal
+// PLL multiplier = 20, PLL divider = 1
+#define PLLDIV1 0
+#define PLLDIV2 1
+#define PLLDIV3 2
+#define PLLDIV4 3
+#define PLLDIV5 4
+#define PLLDIV6 5
+#define PLLDIV7 6
+#define PLLDIV8 7
+
+#define PLLMULT16 0UL
+#define PLLMULT20 (20 - 16)  // 20x multiplier
+#define PLLMULT40 (40 - 16)
+#define PLLMULT47 (47 - 16)
+
+#define SYSTEMCLICK_SCS_OSC_CLK  1UL
+#define SYSTEMCLICK_SCS_SIRC_CLK 2UL
+#define SYSTEMCLICK_SCS_FIRC_CLK 3UL
+#define SYSTEMCLICK_SCS_SPLL_CLK 6UL
+
+#define PLL_CONFIG ((PLLDIV1 << 8) | (PLLMULT20 << 16))
+
+#define CLOCKoUT_SELECT (0)
+
+// Clock source definitions for S32K3xx peripherals
+#define CLOCK_SOURCE_ADC0   (SYSTEMCLICK_SCS_FIRC_CLK << 24)
+#define CLOCK_SOURCE_ADC1   (SYSTEMCLICK_SCS_FIRC_CLK << 24)
+#define CLOCK_SOURCE_LPSPI0 (SYSTEMCLICK_SCS_FIRC_CLK << 24)
+#define CLOCK_SOURCE_LPSPI1 (SYSTEMCLICK_SCS_FIRC_CLK << 24)
+#define CLOCK_SOURCE_LPSPI2 (SYSTEMCLICK_SCS_FIRC_CLK << 24)
+#define CLOCK_SOURCE_LPIT   CLOCKSET_PCC(SYSTEMCLICK_SCS_SIRC_CLK, 0, 0)
+
+#define CLOCK_SOURCE_FTM0 (SYSTEMCLICK_SCS_OSC_CLK << 24)
+#define CLOCK_SOURCE_FTM1 (SYSTEMCLICK_SCS_SPLL_CLK << 24)
+#define CLOCK_SOURCE_FTM2 (SYSTEMCLICK_SCS_OSC_CLK << 24)
+#define CLOCK_SOURCE_FTM3 (SYSTEMCLICK_SCS_SPLL_CLK << 24)
+#define CLOCK_SOURCE_FTM4 (SYSTEMCLICK_SCS_SPLL_CLK << 24)
+#define CLOCK_SOURCE_FTM5 (SYSTEMCLICK_SCS_OSC_CLK << 24)
+#define CLOCK_SOURCE_FTM6 (SYSTEMCLICK_SCS_SPLL_CLK << 24)
+#define CLOCK_SOURCE_FTM7 (SYSTEMCLICK_SCS_OSC_CLK << 24)
+
+#define CLOCK_SOURCE_LPTMR0 CLOCKSET_PCC(SYSTEMCLICK_SCS_OSC_CLK, 0, 0)
+#define CLOCK_SOURCE_FLEXIO CLOCKSET_PCC(SYSTEMCLICK_SCS_OSC_CLK, 0, 0)
+#define CLOCK_SOURCE_LPI2C0 CLOCKSET_PCC(SYSTEMCLICK_SCS_OSC_CLK, 0, 0)
+
+#define CLOCK_SOURCE_LPUART0 CLOCKSET_PCC(SYSTEMCLICK_SCS_OSC_CLK, 0, 0)
+#define CLOCK_SOURCE_LPUART1 CLOCKSET_PCC(SYSTEMCLICK_SCS_FIRC_CLK, 0, 0)
+#define CLOCK_SOURCE_LPUART2 CLOCKSET_PCC(SYSTEMCLICK_SCS_FIRC_CLK, 0, 0)
+#define CLOCK_SOURCE_LPUART3 CLOCKSET_PCC(SYSTEMCLICK_SCS_FIRC_CLK, 0, 0)
+
+// FLEXCAN clock sources
+#define CLOCK_SOURCE_FLEXCAN0 (SYSTEMCLICK_SCS_OSC_CLK << 24)
+#define CLOCK_SOURCE_FLEXCAN1 (SYSTEMCLICK_SCS_OSC_CLK << 24)
+#define CLOCK_SOURCE_FLEXCAN2 (SYSTEMCLICK_SCS_OSC_CLK << 24)
+
+#endif
+
+#define _RCM_SRIE_ ((3UL) | (1UL << 7) | (1UL << 5))
+
+#define _SCG_RCCR_ \
+    ((_SCG_RCCR_SCS) | (_SCG_RCCR_DIVCORE) | (_SCG_RCCR_DIVBUS) | (_SCG_RCCR_DIVSLOW))
+
+#ifdef __cplusplus
+}
+#endif

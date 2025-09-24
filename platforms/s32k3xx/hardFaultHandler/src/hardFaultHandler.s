@@ -9,8 +9,8 @@
 // Unit constants
 //------------------------------------------------------------------------------
 
-// Dump location
-.equ NO_INIT_RAM_START, 0x2000EC00
+// Dump location for S32K3xx
+.equ NO_INIT_RAM_START, 0x20007C00  // Adjusted for S32K3xx SRAM layout
 .equ NO_INIT_RAM_SIZE,  0x400
 .equ DUMP_SIZE,         0x140
 .equ DUMP_START,        NO_INIT_RAM_START + NO_INIT_RAM_SIZE - DUMP_SIZE
