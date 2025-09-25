@@ -34,6 +34,26 @@
             "runToEntryPoint": "main",
             "servertype": "external",
             "gdbTarget": "127.0.0.1:7224"
+        },
+        {
+            "name": "Debug s32k312",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/cmake-build-s32k312/application/app.referenceApp.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "servertype": "external",
+            "gdbTarget": "127.0.0.1:7224"
+        },
+        {
+            "name": "Debug s32k344",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/cmake-build-s32k344/application/app.referenceApp.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "servertype": "external",
+            "gdbTarget": "127.0.0.1:7224"
         }
     ]
 }

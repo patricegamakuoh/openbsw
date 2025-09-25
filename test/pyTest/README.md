@@ -114,6 +114,78 @@ which has been configured for serial communication in `target_s32k148_with_hwtes
 under `[hw_tester_serial]`.
 Tests with the fixture `hw_tester` will be only be run if `[hw_tester_serial]` is present.
 
+### Running `pytest` with `--target=s32k312`
+
+For this option... 
+
+1. Need to have built an image for the `s32k312` target
+
+    To run tests using the `s32k312` you must first have built the image for that target
+    in its expected default location...
+    ```
+    cmake-build-s32k312/application/app.referenceApp.elf
+    ```
+
+2. Need an S32K312 development board
+
+    You need to have the board running, connected via USB to your build machine.
+
+3. Need to have `can0` set up
+
+    `target_s32k312.toml` in this directory specifies `can0`
+    as the name of the `SocketCAN` interface to use
+    to communicate with the S32K312 development board,
+    so this is expected be set up for tests involving `CAN` to pass.
+
+4. Need `pegdbserver_console` up and running
+
+    You need P&E Micro's version of `gdbserver` running and connected to the board...
+    ```
+    sudo ./pegdbserver_console -startserver -device=NXP_S32K3xx_S32K312F2M0M11
+    ```
+    This allows the `.gdb` scripts referenced by `target_s32k312.toml` to flash
+    the board at the start of `pytest` and to reset the board before each test.
+
+### Running `pytest` with `--target=s32k344`
+
+For this option... 
+
+1. Need to have built an image for the `s32k344` target
+
+    To run tests using the `s32k344` you must first have built the image for that target
+    in its expected default location...
+    ```
+    cmake-build-s32k344/application/app.referenceApp.elf
+    ```
+
+2. Need an S32K344 development board
+
+    You need to have the board running, connected via USB to your build machine.
+
+3. Need to have `can0` set up
+
+    `target_s32k344.toml` in this directory specifies `can0`
+    as the name of the `SocketCAN` interface to use
+    to communicate with the S32K344 development board,
+    so this is expected be set up for tests involving `CAN` to pass.
+
+4. Need `pegdbserver_console` up and running
+
+    You need P&E Micro's version of `gdbserver` running and connected to the board...
+    ```
+    sudo ./pegdbserver_console -startserver -device=NXP_S32K3xx_S32K344F2M0M11
+    ```
+    This allows the `.gdb` scripts referenced by `target_s32k344.toml` to flash
+    the board at the start of `pytest` and to reset the board before each test.
+
+### Running `pytest` with `--target=s32k312_with_hwtester` or `--target=s32k344_with_hwtester`
+
+For these options, you need everything set up as for `--target=s32k312` or `--target=s32k344` **and**
+the S32K3xx board must be set up with an external hardware testing board
+which has been configured for serial communication in the respective `target_s32k3xx_with_hwtester.toml`
+under `[hw_tester_serial]`.
+Tests with the fixture `hw_tester` will be only be run if `[hw_tester_serial]` is present.
+
 ## Examples
 
 To run all tests for `posix` run...
@@ -124,6 +196,14 @@ To run all tests for `s32k148` without restarting between tests, run...
 ```
 pytest --target=s32k148 --no-restart
 ```
+To run all tests for `s32k312` without restarting between tests, run...
+```
+pytest --target=s32k312 --no-restart
+```
+To run all tests for `s32k344` without restarting between tests, run...
+```
+pytest --target=s32k344 --no-restart
+```
 To run all tests found in one file on all targets (for which `target_*.toml` files are found)...
 ```
 pytest --target=* can/test_can.py
@@ -131,6 +211,10 @@ pytest --target=* can/test_can.py
 To run all test files in the `uds` subdirectory, but ignore one, for `s32k148`... 
 ```
 pytest --target=s32k148 --ignore=uds/test_udsToolRDBI.py uds/
+```
+To run all test files in the `uds` subdirectory for `s32k312`... 
+```
+pytest --target=s32k312 uds/
 ```
 
 ## Format of `target_*.toml` files

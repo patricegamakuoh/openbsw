@@ -20,10 +20,15 @@ option(PLATFORM_SUPPORT_UDS "Turn UDS support on or off" OFF)
 
 set(BUILD_TARGET_PLATFORM
     "POSIX"
-    CACHE STRING "Target Platform")
+    CACHE STRING "Target Platform (POSIX|S32K148EVB|S32K312|S32K344)")
 
 # Convert target name to lower case to match directory name
 string(TOLOWER "${BUILD_TARGET_PLATFORM}" OPENBSW_TARGET)
+
+# Map S32K3xx variants to s32k3xx platform
+if(OPENBSW_TARGET STREQUAL "s32k312" OR OPENBSW_TARGET STREQUAL "s32k344")
+    set(OPENBSW_TARGET "s32k3xx")
+endif()
 
 set(OPENBSW_TARGET_DIR ${OPENBSW_APP_DIR}/platforms/${OPENBSW_TARGET})
 include(${OPENBSW_TARGET_DIR}/Options.cmake)

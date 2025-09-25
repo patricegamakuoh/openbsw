@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
      matrix:
-        platform: [posix, s32k148]
+        platform: [posix, s32k148, s32k312, s32k344]
         compiler: [clang, gcc]
         cpp-standard: [14, 17, 20, 23]
 

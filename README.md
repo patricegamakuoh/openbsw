@@ -43,16 +43,16 @@ allowing developers to get up and running quickly.
 
 ### Implemented Features
 
-| Feature | Description | POSIX Support | S32K148 Support | New? |
-| --- | --- | --- | --- | --- |
-| Modular design | Based on each project's needs, required software modules can easily be included or excluded. | Yes | Yes | |
-| Application Lifecycle Management | The order in which Applications/Features are brought up/down is easily organised. | Yes | Yes | |
-| Console | A console is provided for diagnostic and development purposes. | In a terminal interface | Via UART | |
-| Commands | Commands can easily be added to the console to aid development, test and debugging. | Yes | Yes | |
-| Logging | Diagnostic logging is implemented per software component. | Yes | Yes | |
-| CAN | Support for CAN bus communication | If ``SocketCAN`` is supported | Yes | Since Release 0.1 |
-| Sensors and actuators integration | ADC, PWM & GPIO | | Yes | |
-| UDP, DoCAN | Diagnostics over CAN | If ``SocketCAN`` is supported | Yes | Since Release 0.1 |
+| Feature | Description | POSIX Support | S32K148 Support | S32K3xx Support | New? |
+| --- | --- | --- | --- | --- | --- |
+| Modular design | Based on each project's needs, required software modules can easily be included or excluded. | Yes | Yes | Yes | |
+| Application Lifecycle Management | The order in which Applications/Features are brought up/down is easily organised. | Yes | Yes | Yes | |
+| Console | A console is provided for diagnostic and development purposes. | In a terminal interface | Via UART | Via UART | |
+| Commands | Commands can easily be added to the console to aid development, test and debugging. | Yes | Yes | Yes | |
+| Logging | Diagnostic logging is implemented per software component. | Yes | Yes | Yes | |
+| CAN | Support for CAN bus communication | If ``SocketCAN`` is supported | Yes | Yes | Since Release 0.1 |
+| Sensors and actuators integration | ADC, PWM & GPIO | | Yes | Yes | |
+| UDP, DoCAN | Diagnostics over CAN | If ``SocketCAN`` is supported | Yes | Yes | Since Release 0.1 |
 
 ## Roadmap
 

@@ -5,7 +5,7 @@ This project provides a SDK to build professional, high quality embedded softwar
 This is a software stack specifically designed and developed for automotive purpose.
 
 This repository describes the complete environment required for building and testing the target,
-including support for both POSIX and the S32K148EVB platform. It provides the service layer,
+including support for POSIX, S32K148EVB, and S32K3xx platforms. It provides the service layer,
 driver code and configuration files, along with detailed user documentation.
 
 If you are new to this, take a look at :ref:`learning_overview`.
@@ -47,6 +47,12 @@ Check ``CanSystem`` and ``DemoSystem`` for reference.
     - The ``executables/referenceApp/platforms/s32k1xx/main/src/main.cpp`` is the entry point for S32K148EVB platform.
 
     - ``StaticBsp`` is a class which contains platform specific BSP modules like ADC, PWM and CAN.
+
+- S32K3xx (S32K312/S32K344):
+
+    - The ``executables/referenceApp/platforms/s32k3xx/main/src/main.cpp`` is the entry point for S32K3xx platforms.
+
+    - ``StaticBsp`` is a class which contains platform specific BSP modules like ADC, PWM and CAN for Cortex-M7.
 
     - ``BspSystem`` class is used to handle bsp modules and its cyclic functions with ``lifecycleManager``.
 

@@ -1,0 +1,10 @@
+dockerfile.filename = "bsw-arm"
+
+script = """
+    cmake -B cmake-build-s32k312 -S executables/referenceApp -DOPENBSW_PLATFORM="s32k3xx" -DCPU_S32K312=1 --toolchain ../../admin/cmake/ArmNoneEabi-gcc.cmake
+    cmake --build cmake-build-s32k312 --target app.referenceApp -j
+    cmake -B cmake-build-s32k344 -S executables/referenceApp -DOPENBSW_PLATFORM="s32k3xx" -DCPU_S32K344=1 --toolchain ../../admin/cmake/ArmNoneEabi-gcc.cmake
+    cmake --build cmake-build-s32k344 --target app.referenceApp -j
+"""
+
+codeFormat = false

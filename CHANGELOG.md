@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2024-12-XX
+
+### Added
+
+* **S32K3xx Platform Support**:
+    * Added support for S32K312 and S32K344 microcontrollers
+    * Cortex-M7 FreeRTOS port for S32K3xx family
+    * S32K3xx-specific BSP modules (MCU, Clock, SCI, IO, CAN, ADC, FTM)
+    * UART console support for S32K3xx platforms
+    * S32K3xx linker scripts and memory configurations
+    * Pytest test configurations for S32K312 and S32K344
+    * VS Code IntelliSense and debugging support for S32K3xx
+    * CMake presets for S32K3xx development
+    * GDB debugging scripts for S32K3xx platforms
+    * Development environment setup scripts for S32K3xx
+    * Documentation for S32K3xx platform usage
+
 ## [0.2.0] - 2024-11-19
 
 ### Added

@@ -20,6 +20,28 @@
         "BUILD_TARGET_PLATFORM": "S32K148EVB",
         "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
         }
+    },
+    {
+        "name": "CMake s32k312",
+        "displayName": "CMake s32k312",
+        "generator": "Unix Makefiles",
+        "binaryDir": "${workspaceFolder}/cmake-build-s32k312",
+        "toolchainFile": "../../admin/cmake/ArmNoneEabi-gcc.cmake",
+        "cacheVariables": {
+        "OPENBSW_PLATFORM": "s32k3xx",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+        }
+    },
+    {
+        "name": "CMake s32k344",
+        "displayName": "CMake s32k344",
+        "generator": "Unix Makefiles",
+        "binaryDir": "${workspaceFolder}/cmake-build-s32k344",
+        "toolchainFile": "../../admin/cmake/ArmNoneEabi-gcc.cmake",
+        "cacheVariables": {
+        "OPENBSW_PLATFORM": "s32k3xx",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+        }
     }
     ],
     "buildPresets": [
@@ -31,6 +53,16 @@
     {
         "name": "CMake s32k148",
         "configurePreset": "CMake s32k148",
+        "targets": "app.referenceApp"
+    },
+    {
+        "name": "CMake s32k312",
+        "configurePreset": "CMake s32k312",
+        "targets": "app.referenceApp"
+    },
+    {
+        "name": "CMake s32k344",
+        "configurePreset": "CMake s32k344",
         "targets": "app.referenceApp"
     }
     ]

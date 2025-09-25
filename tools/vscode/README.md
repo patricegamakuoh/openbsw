@@ -19,3 +19,29 @@ Similarly, if you wish to use the
 [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
 extension then
 ``tools/vscode/executables/referenceApp/CMakePresets.json`` can be copied to ``executables/referenceApp/CMakePresets.json``
+
+## Supported Platforms
+
+The VS Code configuration supports the following platforms:
+
+- **posix**: Linux/Unix simulation environment
+- **s32k148**: S32K148 evaluation board (S32K1xx family)
+- **s32k312**: S32K312 evaluation board (S32K3xx family) 
+- **s32k344**: S32K344 evaluation board (S32K3xx family)
+
+### S32K3xx Platform Support
+
+For S32K3xx platforms (s32k312, s32k344), the configuration includes:
+
+- **IntelliSense**: ARM GCC configuration for Cortex-M7
+- **Debugging**: Cortex-Debug extension support with P&E Micro gdbserver
+- **CMake Presets**: Pre-configured build presets for S32K3xx
+- **Compile Commands**: Automatic generation for code completion
+
+### Usage
+
+1. Copy the configuration files to your workspace `.vscode/` directory
+2. Adjust toolchain paths in `settings.json` for your local setup
+3. Select the appropriate platform configuration in VS Code
+4. Use CMake presets to build for your target platform
+5. Use the debug configurations to debug on hardware
